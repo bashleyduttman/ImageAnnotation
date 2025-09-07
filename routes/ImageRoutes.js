@@ -1,0 +1,10 @@
+const express=require("express")
+const router=express.Router()
+const multer=require("multer")
+const storage=multer.memoryStorage()
+const upload=multer({storage})
+const {getImages,deleteImages,postImages} =require("../controller/ImageController")
+router.get('/',getImages)
+router.post('/',upload.single("image"),postImages)
+router.delete('/:id',deleteImages)
+module.exports=router;
